@@ -1,0 +1,21 @@
+name: continuous-integration
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  run-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - uses: actions/setup-node@v2
+        with:
+          node: 12
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Test
+        run: npm test
